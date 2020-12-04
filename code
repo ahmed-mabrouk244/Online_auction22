@@ -1,0 +1,687 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct buyers
+{
+	string email;
+	string name;
+	string password;
+	string deliverd_address;
+	string phone_number;
+	int id=1;
+}buyer[3];
+
+struct sellers
+{
+	string email;
+	string name;
+	string password;
+	string phone_number;
+	int point = 0;
+	int id=1;
+}seller[3];
+
+void rate(int if_rate)
+{
+	int id_seller, rate_seller;
+	if (if_rate == 1)
+	{
+		cout << "Enter the id of the seller ";
+		cin >> id_seller;
+		cout << "Rate the seller from 1 to 5 " << endl;
+		cin >> rate_seller;
+		for (int i = 0; i < 100; ++i)
+		{
+			int _number_seller_ = 1;
+			if (id_seller == seller[_number_seller_].id)
+			{
+				if (rate_seller >= 3 && rate_seller <= 5)
+				{
+					seller[_number_seller_].point++;
+					break;
+				}
+				else if (if_rate == 2)
+				{
+					cout << "1-buyer" << endl << "2-seller" << endl;
+					break;
+				}
+				else
+				{
+					if (rate_seller >= 0 && rate_seller < 3)
+					{
+						cout << "1-buyer" << endl << "2-seller" << endl;
+						break;
+					}
+					else {
+						cout << "invaild" << endl;
+						cout << "1-buyer" << endl << "2-seller" << endl;
+						break;
+					}
+				}
+			}
+			else { _number_seller_++; }
+		}
+	}
+};
+void best_seller(int i, int j, int k)
+{
+	if (i != 0 || j != 0 || k != 0)
+	{
+		if (i >= j && i >= k)
+		{
+			if (i == k)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Cars" << endl << "2-Laps" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else if (i == j)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Cars" << endl << "2-phones" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Cars" << endl;
+				cout << "_________________________________________" << endl;
+			}
+		}
+	}
+	//--------------------------------------------------------------------------
+	if (i != 0 || j != 0 || k != 0)
+	{
+		if (j >= i && j >= k)
+		{
+			if (j == k)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Phones" << endl << "2-Laps" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else if (j == i)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Cars" << endl << "2-phones" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Phones" << endl;
+				cout << "_________________________________________" << endl;
+			}
+		}
+	}
+	//-------------------------------------------------------------------------
+	if (i != 0 || j != 0 || k != 0)
+	{
+		if (k >= j && k >= i)
+		{
+			if (k == i)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Cars" << endl << "2-Laps" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else if (k == j)
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Laps" << endl << "2-phones" << endl;
+				cout << "_________________________________________" << endl;
+			}
+			else
+			{
+				cout << "best seller : " << endl;
+				cout << "1-Laps" << endl;
+				cout << "_________________________________________" << endl;
+			}
+		}
+	}
+};
+const string E = "e";
+int number_buyer = 1;
+int number_seller = 1;
+int sold_cars = 0, sold_phones = 0, sold_laps = 0;
+int main()
+{
+	bool sold1[10] = { false };
+	bool sold2[10] = { false };
+	bool sold3[10] = { false };
+	int guest;
+	int t1 = 1, t2 = 1, t3 = 1;
+	int tt1 = 1, tt2 = 1, tt3 = 1;
+	int ttt1 = 1, ttt2 = 1, ttt3 = 1;
+	int max_price, min_price;
+	int choosen = 0;
+	int id = 1;
+	int type_of_customar;
+	bool items = false;
+	string strng1, strng2, strng3;
+	int price_strng1[10] , price_strng2[10] , price_strng3[10] ;
+	string cpy_strng1[10], cpy_strng2[10], cpy_strng3[10];
+	string date1[10], date2[10], date3[10];
+	int copy_cpy_strng1[10] , copy_cpy_strng2[10] , copy_cpy_strng3[10];
+	cout << "attention, input 'e' when you end" << endl;
+	cout << "1-buyer" << endl << "2-seller" << endl;
+	while (true)
+	{
+		cin >> type_of_customar;
+		//buyer
+		if (type_of_customar == 1)
+		{
+			if (!items)
+			{
+				cout << "There is no items to sell now. Thanks for your vist." << endl;
+				break;
+			}
+			else {
+				int number_categore1;
+				cout << "Do you have an account ?" << endl << "1-YES" << endl << "2-NO" << endl;
+				cin >> guest;
+				//create an coount for buyer
+				if (guest == 2)
+				{
+					cout << "creat your account" << endl;
+					cout << "Hello your id is : " << id << " please, remember it." << endl;
+					buyer[number_buyer].id = id;
+					cout << "Enter your name" << endl;
+					cin >> buyer[number_buyer].name;
+					cout << "Enter your e-mail" << endl;
+					cin >> buyer[number_buyer].email;
+					cout << "Enter your password" << endl;
+					cin >> buyer[number_buyer].password;
+					cout << "Enter your deliverd address" << endl;
+					cin >> buyer[number_buyer].deliverd_address;
+					cout << "Enter your phone number" << endl;
+					cin >> buyer[number_buyer].phone_number;
+					id++; number_buyer++;
+				}
+				//login as buyer
+				else if (guest == 1)
+				{
+					int enter_id;
+					int _number_buyer = 1;
+					string enter_email;
+					string enter_password;
+					cout << "Enter your id" << endl;
+					cin >> enter_id;
+					// large loop to cover all tests 
+					for (int i=0; i<100; ++i)
+					{
+						if (enter_id == buyer[_number_buyer].id)
+						{
+							enter_id = _number_buyer;
+							break;
+						}
+						else { _number_buyer++; }
+					}
+					if (enter_id <= id)
+					{
+						cout << "Enter your e-mail" << endl;
+						cin >> enter_email;
+						if (enter_email == buyer[enter_id].email)
+						{
+							cout << "Enter password" << endl;
+							cin >> enter_password;
+							if (enter_password == buyer[enter_id].password)
+							{
+								cout << "Successfully login" << endl;
+								cout << "Welcome " << buyer[enter_id].name;
+							}
+							else
+							{
+								cout << "invalid password " << endl;
+								cout << "1-buyer" << endl << "2-seller" << endl;  break;
+							}
+						}
+						else
+						{
+							cout << "invalid email " << endl;
+							cout << "1-buyer" << endl << "2-seller" << endl;  break;
+						}
+					}
+					else { cout << "invalid id "; 
+					cout << "1-buyer" << endl << "2-seller" << endl;  break; }
+				}
+				int typerofbuy;
+				cout << "Choose your type of buy" << endl;
+				cout << "1-by only categore." << endl << "2-by categore and price" << endl;
+				cin >> typerofbuy;
+				string strg;
+				if (typerofbuy == 1 || typerofbuy == 2)
+				{
+					best_seller(sold_cars, sold_phones, sold_laps);
+					cout << "please, choose the number of the categore of items you need to buy" << endl;
+					cout << "1-cars." << endl << "2-phones." << endl << "3-laps" << endl;
+					cin >> number_categore1;
+					if (typerofbuy == 2)
+					{
+						cout << "write minimum price : ";
+						cin >> min_price;
+						cout << "write maximum price : ";
+						cin >> max_price; 
+					}
+					if (number_categore1 == 1)
+					{
+						cout << "Cars for sale are : " << endl;
+						while (true)
+						{
+							int list = 1;
+							bool the_first = true;
+							for (int i = 1; i < t1; ++i) {
+								if (typerofbuy == 2)
+								{
+									if (price_strng1[i] >= min_price && price_strng1[i] <= max_price)
+									{
+										cout << list << "- " << cpy_strng1[i];
+										copy_cpy_strng1[list] = i;
+										list++;
+										if (!sold1[i]) {
+											cout << " the price : ";
+											cout << price_strng1[i] << "  " << date1[i] << endl;
+										}
+										else { cout << "SOLD" << endl; }
+									}
+
+								}
+								else {
+									cout << i << "- " << cpy_strng1[i];
+									if (!sold1[i]) {
+										cout << " the price : ";
+										cout << price_strng1[i] << "  "<<date1[i] << endl;
+									}
+									else { cout << "SOLD" << endl;; }
+								}
+							}
+							cout << "Do yo want to buy anyone ?" << endl << "1-YES." << endl << "2-NO." << endl;
+							cin >> strg;
+							if (strg == "1")
+							{
+								sold_cars++;
+								cout << "choose the number of the item you need" << endl;
+								cin >> choosen;
+								if (choosen <= t1)
+								{
+									if (typerofbuy == 1)
+									{
+										int if_rate;
+										cout << "the operation is done successfully" << endl;
+										//rate
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										cpy_strng1[choosen].erase();
+										sold1[choosen] = true;
+										price_strng1[choosen] = 0;
+										cout << "1-buyer" << endl << "2-seller" << endl;
+										break;
+									}
+									else if (typerofbuy == 2)
+									{
+										int if_rate;
+										cout << "your request is sent" << endl;
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										choosen = copy_cpy_strng1[choosen];
+										cpy_strng1[choosen].erase();
+										sold1[choosen] = true;
+										price_strng1[choosen] = 0;
+										cout << "1-buyer" << endl << "2-seller" << endl;
+										break;
+									}
+								}
+								else {
+									cout << "invalid" << endl;
+									cout << "1-buyer" << endl << "2-seller" << endl;
+									break;
+								}
+							}
+							else if (strg == "2")
+							{
+								cout << "thanks for your visit" << endl;
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+							else if (strg == "e")
+							{
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+						}
+					}
+					else if (number_categore1 == 2)
+					{
+						cout << "Phones for sale are : " << endl;
+						while (true)
+						{
+							int list = 1;
+							for (int i = 1; i < t2; ++i) {
+								if (typerofbuy == 2)
+								{
+									if (price_strng2[i] >= min_price && price_strng2[i] <= max_price)
+									{
+										cout << list << "- " << cpy_strng2[i];
+										copy_cpy_strng2[list] = i;
+										list++;
+										if (!sold2[i]) {
+											cout << " the price : ";
+											cout << price_strng2[i] <<"  "<<date2[i] << endl;
+										}
+										else { cout << "SOLD" << endl; }
+									}
+								}
+								else {
+									cout << i << "- " << cpy_strng2[i];
+									if (!sold2[i]) {
+										cout << " the price : ";
+										cout << price_strng2[i] <<"  "<<date2[i]<< endl;
+									}
+									else { cout << "SOLD"; }
+								}
+							}
+							cout << "Do yo want to buy anyone ?" << endl << "1-YES." << endl << "2-NO." << endl;
+							cin >> strg;
+							if (strg == "1")
+							{
+								sold_phones++;
+								cout << "choose the number of the item you need" << endl;
+								cin >> choosen;
+								if (choosen <= t2)
+								{
+									if (typerofbuy == 1)
+									{
+										int if_rate;
+										cout << "the operation is done successfully" << endl;
+										//rate
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										cpy_strng2[choosen].erase();
+										sold2[choosen] = true;
+										price_strng2[choosen] = 0;
+										cout << "1-buyer" << endl << "2-seller" << endl;
+										break;
+									}
+									else if (typerofbuy == 2)
+									{
+										int if_rate;
+										cout << "the operation is done successfully" << endl;
+										//rate
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										choosen = copy_cpy_strng2[choosen];
+										cpy_strng2[choosen].erase();
+										sold2[choosen] = true;
+										price_strng2[choosen] = 0;
+										cout << "1-buyer" << endl << "2-seller" << endl;
+										break;
+									}
+
+								}
+								else
+								{
+									cout << "invalid" << endl;
+									cout << "1-buyer" << endl << "2-seller" << endl;
+									break;
+								}
+							}
+							else if (strg == "2")
+							{
+								cout << "thanks for your visit" << endl;
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+							else if (strg == "e")
+							{
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+						}
+					}
+					else if (number_categore1 == 3)
+					{
+						cout << "Laps for sale are : " << endl;
+						while (true)
+						{
+							int list = 1;
+							for (int i = 1; i < t3; ++i) {
+								if (typerofbuy == 2)
+								{
+									if (price_strng3[i] >= min_price && price_strng3[i] <= max_price)
+									{
+										cout << list << "- " << cpy_strng3[i];
+										copy_cpy_strng3[list] = i;
+										list++;
+										if (!sold3[i]) {
+											cout << " the price : ";
+											cout << price_strng3[i] <<"  "<<date3[i] << endl;
+										}
+										else { cout << "SOLD" << endl; }
+									}
+								}
+								else {
+									cout << i << "- " << cpy_strng3[i];
+									if (!sold3[i]) {
+										cout << " the price : ";
+										cout << price_strng3[i] << "  " <<date3[i] << endl;
+									}
+									else { cout << "SOLD" << endl;; }
+								}
+							}
+							cout << "Do yo want to buy anyone ?" << endl << "1-YES." << endl << "2-NO." << endl;
+							cin >> strg;
+							if (strg == "1")
+							{
+								sold_laps++;
+								cout << "choose the number of the item you need" << endl;
+								cin >> choosen;
+								if (choosen <= t3)
+								{
+									if (typerofbuy == 1)
+									{
+										int if_rate;
+										int rate_seller;
+										int id_seller;
+										cout << "the operation is done successfully" << endl;
+										//rate
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										cpy_strng3[choosen].erase();
+										sold3[choosen] = true;
+										price_strng3[choosen] = 0;
+										
+									}
+									else if (typerofbuy == 2)
+									{
+										int if_rate;
+										cout << "the operation is done successfully" << endl;
+										//rate
+										cout << "Do you want to rate the seller ?" << endl;
+										cout << "1-YES" << endl << "2-NO" << endl;
+										cin >> if_rate;
+										rate(if_rate);
+										choosen = copy_cpy_strng3[choosen];
+										cpy_strng3[choosen].erase();
+										sold3[choosen] = true;
+										price_strng3[choosen] = 0;
+										cout << "1-buyer" << endl << "2-seller" << endl;
+										break;
+									}
+
+								}
+								else
+								{
+									cout << "invalid" << endl;
+									cout << "1-buyer" << endl << "2-seller" << endl;
+									break;
+								}
+							}
+							else if (strg == "2")
+							{
+								cout << "thanks for your visit" << endl;
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+							if (strg == "e")
+							{
+								cout << "1-buyer" << endl << "2-seller" << endl;
+								break;
+							}
+						}
+					}
+				}
+				else { cout << "invaild input"; break; }
+			}
+		}
+		//seller
+		else if (type_of_customar == 2)
+		{
+			int number_categore;
+			cout << "Do you have an account ?" << endl << "1-YES" << endl << "2-NO" << endl;
+			cin >> guest;
+			//create an account for seller
+			if (guest == 2)
+			{
+				cout << "creat your account" << endl;
+				cout << "Hello your id is : " << id << " please, remember it." << endl;
+				seller[number_seller].id = id;
+				cout << "Enter your name" << endl;
+				cin >> seller[number_seller].name;
+				cout << "Enter your e-mail" << endl;
+				cin >> seller[number_seller].email;
+				cout << "Enter your password" << endl;
+				cin >> seller[number_seller].password;
+				cout << "Enter your phone number" << endl;
+				cin >> seller[number_seller].phone_number;
+				id++; number_seller++;
+			}
+			//login as seller
+			else if (guest == 1)
+			{
+				int enter_id;
+				bool tru = true;
+				int _number_seller = 1;
+				string enter_email;
+				string enter_password;
+				cout << "Enter your id" << endl;
+				cin >> enter_id;
+				if (enter_id <= id)
+				{
+					while (tru)
+					{
+						if ( enter_id == seller[_number_seller].id)
+						{
+								enter_id = _number_seller;
+								tru = false;
+						}
+						else { _number_seller++; }
+					}
+					tru = true;
+					cout << "Enter your e-mail" << endl;
+					cin >> enter_email;
+					if (enter_email == seller[enter_id].email)
+					{
+						cout << "Enter password" << endl;
+						cin >> enter_password;
+						if (enter_password == seller[enter_id].password)
+						{
+							cout << "Successfully login" << endl;
+							cout << "Welcome " << seller[enter_id].name << "," << "Your rate : " << seller[enter_id].point << endl;
+						}
+						else
+						{
+							cout << "invalid password " << endl;
+							break;
+						}
+					}
+					else
+					{
+						cout << "invalid email ";
+						break;
+					}
+				}
+				else {
+					cout << "invalid id ";
+					  break;
+				}
+			}
+			items = true;
+			cout << "Please, choose the number of the categore of your items." << endl;
+			cout << "1-cars." << endl << "2-phones." << endl << "3-laps" << endl;
+			cin >> number_categore;
+			if (number_categore == 1)
+			{
+				cout << "enter your items and the price of each one." << endl;
+				int a = 1;
+				while (true)
+				{
+					cout << a << "- ";
+					a++;
+					cin >> strng1;
+					if (strng1 == "e")
+					{
+						cout << "1-buyer" << endl << "2-seller" << endl;
+						break;
+					}
+					else { cpy_strng1[t1] = strng1; t1++; }
+					cin >> price_strng1[tt1]; tt1++;
+					cin >> date1[ttt1]; ttt1++;
+				}
+			}
+			else if (number_categore == 2)
+			{
+				cout << "enter your items and the price of each one." << endl;
+				int b = 1;
+				while (true)
+				{
+					cout << b << "- ";
+					b++;
+					cin >> strng2;
+					if (strng2 == "e")
+					{
+						cout << "1-buyer" << endl << "2-seller" << endl;
+						break;
+					}
+					else { cpy_strng2[t2] = strng2; t2++; }
+					cin >> price_strng2[tt2]; tt2++;
+					cin >> date2[ttt2]; ttt2++;
+				}
+			}
+			else if (number_categore == 3)
+			{
+				cout << "enter your items and the price of each one." << endl;
+				int c = 1;
+				while (true)
+				{
+					cout << c << "- ";
+					c++;
+					cin >> strng3;
+					if (strng3 == "e")
+					{
+						cout << "1-buyer" << endl << "2-seller" << endl;
+						break;
+					}
+					else { cpy_strng3[t3] = strng3; t3++; }
+					cin >> price_strng3[tt3]; tt3++;
+					cin >> date3[ttt3]; ttt3++;
+				}
+			}
+			
+		}
+		else {
+		cout << "invalid"<< endl;
+		cout << "1-buyer" << endl << "2-seller" << endl;
+		}
+	}
+}
